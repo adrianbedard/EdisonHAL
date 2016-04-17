@@ -13,6 +13,7 @@ SET( SRC_H
 )
 
 SET( SRC_CPP
+	${CUR_SRC}/EdisonHalTest.cpp
 )
 
 ADD_LIBRARY( EdisonHalTest STATIC
