@@ -6,7 +6,7 @@
 
 #include "Datastructures.h"
 #include "osMechanics.h"
-
+#include "hardwareHeader.h"
 
 namespace edison
 {

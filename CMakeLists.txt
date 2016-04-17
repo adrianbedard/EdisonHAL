@@ -7,11 +7,20 @@ MESSAGE(STATUS )
 MESSAGE(STATUS ========= Edison HAL ==========)
 MESSAGE(STATUS )
 
+SET(CUR_SRC ${GLOBAL_DIR}/EdisonHAL)
+INCLUDE_DIRECTORIES(${CUR_SRC})
+
 IF(EXISTS /usr/share/mraa/CMakeCache.txt)
 
 MESSAGE(STATUS )
 MESSAGE(STATUS Using Edison HAL...)
 MESSAGE(STATUS )
+
+SET(EXE_LIBS ${EXE_LIBS} mraa)
+SET( SRC_H
+	${CUR_SRC}/EdisonHeaders/hardwareHeader.h
+)
+INCLUDE_DIRECTORIES(${CUR_SRC}/EdisonHeaders)
 
 ELSE()
 
@@ -19,12 +28,14 @@ MESSAGE(STATUS )
 MESSAGE(STATUS Using false HAL...)
 MESSAGE(STATUS )
 
+SET( SRC_H
+	${CUR_SRC}/FalseHeaders/hardwareHeader.h
+)
+INCLUDE_DIRECTORIES(${CUR_SRC}/FalseHeaders)
+
 ENDIF()
 
-SET(CUR_SRC ${GLOBAL_DIR}/EdisonHAL)
-INCLUDE_DIRECTORIES(${CUR_SRC})
-
-SET( SRC_H
+SET( SRC_H ${SRC_H}
 	${CUR_SRC}/EdisonHal.h
 )
 
