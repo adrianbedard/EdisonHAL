@@ -7,7 +7,7 @@ MESSAGE(STATUS )
 MESSAGE(STATUS ========= Edison HAL ==========)
 MESSAGE(STATUS )
 
-IF(EXISTS "/user/share/mmra/CMakeCache.txt")
+IF(EXISTS /usr/share/mraa/CMakeCache.txt)
 
 MESSAGE(STATUS )
 MESSAGE(STATUS Using Edison HAL...)
