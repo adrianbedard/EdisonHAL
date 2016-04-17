@@ -9,6 +9,8 @@
 
 #define EDISON
 
+#include <unistd.h>
+#include <syslog.h>
 #include "mraa.h"
 #include "mraa/common.h"
 #include "mraa/aio.h"

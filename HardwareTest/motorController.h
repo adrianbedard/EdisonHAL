@@ -1,10 +1,12 @@
+#ifndef MOTOR_CONTROLLER_H
+#define MOTOR_CONTROLLER_H
+
+#include "hardwareHeader.h"
+
 #include <stdio.h>
-#include <unistd.h>
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
-
-#include "mraa.h"
 
 #define IN1 2
 #define IN2 4
@@ -19,3 +21,5 @@ int blink();
 int sweep();
 
 int read();
+
+#endif

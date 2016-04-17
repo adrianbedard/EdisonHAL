@@ -1,20 +1,25 @@
+#ifndef MOTOR_CONTROLLER_CPP
+#define MOTOR_CONTROLLER_CPP
+
 #include "motorController.h"
 #include "EdisonHal.h"
 
 int running = 0;
 static int iopin;
 
-void
-sig_handler(int signo)
+void sig_handler(int signo)
 {
+	#ifdef EDISON
     if (signo == SIGINT) {
         printf("closing IO%d nicely\n", iopin);
         running = -1;
     }
+	#endif
 }
 
 int blink()
 {
+	#ifdef EDISON
     mraa_result_t r = MRAA_SUCCESS;
     iopin = IN1;
 
@@ -66,10 +71,14 @@ int blink()
     }
 
     return r;
+	#else
+	return 1;
+	#endif
 }
 
 int sweep()
 {
+	#ifdef EDISON
     mraa_init();
     //! [Interesting]
     mraa_pwm_context pwm;
@@ -91,12 +100,13 @@ int sweep()
         }
         float output = mraa_pwm_read(pwm);
     }
-    //! [Interesting]
+	#endif
     return 0;
 }
 
 int read()
 {
+	#ifdef EDISON
     mraa_aio_context adc_a0;
     uint16_t adc_value = 0;
     float adc_value_float = 0.0;
@@ -131,6 +141,10 @@ int read()
     }
 
     mraa_aio_close(adc_a0);
-
-    return MRAA_SUCCESS;
+	return MRAA_SUCCESS;
+	#else
+    return 1;
+	#endif
 }
+
+#endif
