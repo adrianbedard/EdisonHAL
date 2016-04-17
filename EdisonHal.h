@@ -7,6 +7,7 @@
 #include "Datastructures.h"
 #include "osMechanics.h"
 
+
 namespace edison
 {
 	/** @brief Standard out pointer for edison namespace
