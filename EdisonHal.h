@@ -43,10 +43,10 @@ namespace edison
 };
 
 #ifndef edout
-#define edout osout_func()
+#define edout edout_func()
 #endif
 #ifndef ederr
-#define ederr oserr_func()
+#define ederr ederr_func()
 #endif
 
 #endif

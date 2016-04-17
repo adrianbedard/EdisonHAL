@@ -24,6 +24,23 @@ int main(int argc,char** argv)
 	edout_ptr = os::logger.castNewTargetStream("Edison",false);
     ederr_ptr = os::logger.castNewTargetStream("Edison Error",true);
 	
+	//No edison case
+#ifndef EDISON
+	ederr<<"Not running this program on an Edison"<<std::endl;
+	ederr<<"Exiting pre-maturely"<<std::endl;
+
+	//For testing sanity
+	#ifdef _WIN32
+	#if _DEBUG
+	system("pause");
+	#endif
+	#endif
+
+	//Edison case
+#else
+	edout<<"Edison hardware testing..."<<std::endl;
+#endif
+	
 	return 1;
 }
 
