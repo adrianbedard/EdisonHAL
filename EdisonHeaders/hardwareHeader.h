@@ -14,5 +14,7 @@
 #include "mraa/aio.h"
 #include "mraa/gpio.h"
 #include "mraa/pwm.h"
+#include "helloWorldMraa.h"
+#include "motorController.h"
 
 #endif

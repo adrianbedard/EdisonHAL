@@ -39,6 +39,10 @@ int main(int argc,char** argv)
 	//Edison case
 #else
 	edout<<"Edison hardware testing..."<<std::endl;
+	hello();
+	//blink();
+	//sweep();
+	read();
 #endif
 	
 	return 1;
