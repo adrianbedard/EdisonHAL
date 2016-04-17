@@ -1,0 +1,32 @@
+IF(NOT EDISONHAL_CMAKE)
+SET(EDISONHAL_CMAKE 1)
+
+INCLUDE(${GLOBAL_DIR}/osMechanics/CMakeLists.txt)
+
+MESSAGE(STATUS )
+MESSAGE(STATUS ========= Edison HAL ==========)
+MESSAGE(STATUS )
+
+SET(CUR_SRC ${GLOBAL_DIR}/EdisonHal)
+INCLUDE_DIRECTORIES(${CUR_SRC})
+
+SET( SRC_H
+	${CUR_SRC}/EdisonHal.h
+)
+
+SET( SRC_CPP
+	${CUR_SRC}/EdisonHalLogging.cpp
+)
+
+ADD_LIBRARY( EdisonHal STATIC
+	${SRC_CPP}
+	${SRC_H}
+)
+TARGET_LINK_LIBRARIES( EdisonHal
+	${OS_LIBS}
+	${EXE_LIBS}
+)
+SET(EXE_LIBS ${EXE_LIBS} EdisonHal)
+INCLUDE(${GLOBAL_DIR}/EdisonHal/test/CMakeLists.txt)
+
+ENDIF(NOT EDISONHAL_CMAKE)
