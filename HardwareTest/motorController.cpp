@@ -1,3 +1,6 @@
+#ifndef MOTOR_CONTROLLER_CPP
+#define MOTOR_CONTROLLER_CPP
+
 #include "motorController.h"
 #include "EdisonHal.h"
 
@@ -6,17 +9,19 @@ using namespace edison;
 int running = 0;
 static int iopin;
 
-void
-sig_handler(int signo)
+void sig_handler(int signo)
 {
+	#ifdef EDISON
     if (signo == SIGINT) {
         printf("closing IO%d nicely\n", iopin);
         running = -1;
     }
+	#endif
 }
 
 int blink()
 {
+	#ifdef EDISON
     mraa_result_t r = MRAA_SUCCESS;
     iopin = IN1;
 
@@ -68,10 +73,14 @@ int blink()
     }
 
     return r;
+	#else
+	return 1;
+	#endif
 }
 
 int sweep()
 {
+	#ifdef EDISON
     mraa_init();
     //! [Interesting]
     mraa_pwm_context pwm;
@@ -93,12 +102,13 @@ int sweep()
         }
         float output = mraa_pwm_read(pwm);
     }
-    //! [Interesting]
+	#endif
     return 0;
 }
 
 int read()
 {
+	
     mraa_aio_context adc_a0;
     uint16_t adc_value = 0;
     float adc_value_float = 0.0;
@@ -116,14 +126,15 @@ int read()
     return MRAA_SUCCESS;
 }
 
-    motorController::motorController()
+
+motorController::motorController()
     {
         pin1 = -1;
         pin2 = -1;
         enable = -1;
     }
 
-    int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
+int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
     {
         pin1 = PIN1;
         pin2 = PIN2;
@@ -179,7 +190,8 @@ int read()
 
     }
 
-    int motorController::close()
+
+int motorController::close()
     {
         mraa_result_t r = MRAA_SUCCESS;
 
@@ -196,7 +208,7 @@ int read()
     return r;
     }
 
-    void motorController::setMotor(float powerLevel)
+void motorController::setMotor(float powerLevel)
     {
         mraa_result_t r = MRAA_SUCCESS;
         if(powerLevel > 0)
@@ -215,7 +227,7 @@ int read()
         return;
     }
 
-    void motorController::stopMotor()
+void motorController::stopMotor()
     {
         mraa_result_t r = MRAA_SUCCESS;
         r = mraa_gpio_write(gpioPin1, 1);
@@ -225,12 +237,13 @@ int read()
         return;
     }
 
-    joyStick::joyStick()
+joyStick::joyStick()
     {
         xPin = -1;
         yPin = -1;
     }
-    int joyStick::initalizeJoyStick(int XPIN, int YPIN)
+
+int joyStick::initalizeJoyStick(int XPIN, int YPIN)
     {
         xPin = XPIN;
         yPin = YPIN;
@@ -251,12 +264,20 @@ int read()
         }
 
     }
-    float joyStick::getX()
+
+float joyStick::getX()
     {
         return mraa_aio_read_float(xAIO);
     }
-    float joyStick::getY()
+
+float joyStick::getY()
     {
         return mraa_aio_read_float(yAIO);
     }
+
+
+    //mraa_aio_close(adc_a0);
+	
+
+#endif
 

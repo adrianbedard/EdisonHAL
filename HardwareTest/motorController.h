@@ -1,15 +1,19 @@
 
+
 /**
 */
 
 #ifndef MOTORCONTROLLER_H
 #define MOTORCONTROLLER_H
 
+#include "hardwareHeader.h"
+
+
 #include <stdio.h>
-#include <unistd.h>
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
+
 
 #include "mraa.h"
 
@@ -60,7 +64,5 @@ public:
 	float getY();
 	};
 }
-
-
 
 #endif

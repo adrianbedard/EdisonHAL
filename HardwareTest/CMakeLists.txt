@@ -27,7 +27,7 @@ ELSEIF( APPLE )
 	SET(OS_DEF -std=c++11 -c -w)
 ELSE()
 	SET(OS_LIBS pthread )
-	SET(OS_DEF -std=c++11 -c -w)
+	SET(OS_DEF -std=c++0x -c -w)
 ENDIF()
 
 ADD_DEFINITIONS(${OS_DEF})
