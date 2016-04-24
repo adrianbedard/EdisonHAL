@@ -7,4 +7,8 @@
 #ifndef HARDWARE_HEADER_H
 #define HARDWARE_HEADER_H
 
+typedef int mraa_gpio_context;
+typedef int mraa_pwm_context;
+typedef float mraa_aio_context;
+
 #endif

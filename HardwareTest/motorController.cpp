@@ -108,7 +108,7 @@ int sweep()
 
 int read()
 {
-	
+    #ifdef EDISON
     mraa_aio_context adc_a0;
     uint16_t adc_value = 0;
     float adc_value_float = 0.0;
@@ -124,6 +124,9 @@ int read()
     }
     mraa_aio_close(adc_a0);
     return MRAA_SUCCESS;
+    #else
+    return 0;
+    #endif
 }
 
 
@@ -136,6 +139,7 @@ motorController::motorController()
 
 int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
     {
+        #ifdef EDISON
         pin1 = PIN1;
         pin2 = PIN2;
         enable = ENABLE;
@@ -185,7 +189,7 @@ int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
         mraa_pwm_enable(pwmEnable, 1);
 
         //mraa_aio_context adc_a0;
-
+        #endif
         return 0;
 
     }
@@ -193,6 +197,7 @@ int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
 
 int motorController::close()
     {
+        #ifdef EDISON
         mraa_result_t r = MRAA_SUCCESS;
 
         r = mraa_gpio_close(gpioPin1);
@@ -205,11 +210,15 @@ int motorController::close()
             mraa_result_print(r);
         }
 
-    return r;
+        return r;
+        #else
+        return 0;
+        #endif
     }
 
 void motorController::setMotor(float powerLevel)
     {
+        #ifdef EDISON
         mraa_result_t r = MRAA_SUCCESS;
         if(powerLevel > 0)
         {
@@ -224,16 +233,18 @@ void motorController::setMotor(float powerLevel)
             r = mraa_gpio_write(gpioPin2, 0);
             mraa_pwm_write(pwmEnable, -1.0f * powerLevel);
         }
+        #endif
         return;
     }
 
 void motorController::stopMotor()
     {
+        #ifdef EDISON
         mraa_result_t r = MRAA_SUCCESS;
         r = mraa_gpio_write(gpioPin1, 1);
         r = mraa_gpio_write(gpioPin2, 1);
         mraa_pwm_write(pwmEnable, 0);
-
+        #endif
         return;
     }
 
@@ -245,6 +256,7 @@ joyStick::joyStick()
 
 int joyStick::initalizeJoyStick(int XPIN, int YPIN)
     {
+        #ifdef EDISON
         xPin = XPIN;
         yPin = YPIN;
 
@@ -262,17 +274,26 @@ int joyStick::initalizeJoyStick(int XPIN, int YPIN)
         if (yAIO == NULL) {
         return 1;
         }
-
+        #endif
+        return 0;
     }
 
 float joyStick::getX()
     {
+        #ifdef EDISON
         return mraa_aio_read_float(xAIO);
+        #else
+        return 0;
+        #endif
     }
 
 float joyStick::getY()
     {
+        #ifdef EDISON
         return mraa_aio_read_float(yAIO);
+        #else
+        return 0;
+        #endif
     }
 
 

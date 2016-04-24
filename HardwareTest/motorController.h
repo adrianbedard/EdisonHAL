@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 
-#include "mraa.h"
+#include "EdisonHal.h"
 
 namespace edison
 {
