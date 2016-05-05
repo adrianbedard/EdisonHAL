@@ -10,7 +10,7 @@ MESSAGE(STATUS )
 SET(CUR_SRC ${GLOBAL_DIR}/EdisonHAL)
 INCLUDE_DIRECTORIES(${CUR_SRC})
 
-IF(EXISTS /usr/share/mraa/CMakeCache.txt)
+IF(EXISTS /usr/include/mraa.h)
 
 MESSAGE(STATUS )
 MESSAGE(STATUS Using Edison HAL...)
