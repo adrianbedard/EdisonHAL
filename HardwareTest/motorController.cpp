@@ -108,7 +108,7 @@ int sweep()
 
 int read()
 {
-	
+		#ifdef EDISON
 	mraa_aio_context adc_a0;
 	uint16_t adc_value = 0;
 	float adc_value_float = 0.0;
@@ -124,18 +124,24 @@ int read()
 	}
 	mraa_aio_close(adc_a0);
 	return MRAA_SUCCESS;
+#else
+	return 1;
+#endif
 }
 
 
 motorController::motorController()
 {
+	#ifdef EDISON
 	pin1 = -1;
 	pin2 = -1;
 	enable = -1;
+#endif
 }
 
 int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
 {
+	#ifdef EDISON
 	pin1 = PIN1;
 	pin2 = PIN2;
 	enable = ENABLE;
@@ -187,12 +193,16 @@ int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
 		//mraa_aio_context adc_a0;
 	
 	return 0;
+#else
+	return 1;
+#endif
 	
 }
 
 
 int motorController::close()
 {
+	#ifdef EDISON
 	mraa_result_t r = MRAA_SUCCESS;
 	
 	r = mraa_gpio_close(gpioPin1);
@@ -206,10 +216,14 @@ int motorController::close()
 	}
 	
 	return r;
+#else
+	return 1;
+#endif
 }
 
 void motorController::setMotor(float powerLevel)
 {
+	#ifdef EDISON
 	mraa_result_t r = MRAA_SUCCESS;
 	if(powerLevel > 0)
 		{
@@ -225,26 +239,32 @@ void motorController::setMotor(float powerLevel)
 		mraa_pwm_write(pwmEnable, -1.0f * powerLevel);
 		}
 	return;
+#endif
 }
 
 void motorController::stopMotor()
 {
+	#ifdef EDISON
 	mraa_result_t r = MRAA_SUCCESS;
 	r = mraa_gpio_write(gpioPin1, 1);
 	r = mraa_gpio_write(gpioPin2, 1);
 	mraa_pwm_write(pwmEnable, 0);
 	
 	return;
+	#endif
 }
 
 joyStick::joyStick()
 {
+	#ifdef EDISON
 	xPin = -1;
 	yPin = -1;
+	#endif
 }
 
 int joyStick::initalizeJoyStick(int XPIN, int YPIN)
 {
+	#ifdef EDISON
 	xPin = XPIN;
 	yPin = YPIN;
 	
@@ -262,22 +282,36 @@ int joyStick::initalizeJoyStick(int XPIN, int YPIN)
 	if (yAIO == NULL) {
 		return 1;
 	}
+#else
+	return 0;
+	#endif
+	
 	
 }
 
 float joyStick::getX()
 {
+	#ifdef EDISON
 	return mraa_aio_read_float(xAIO);
+#else
+	return 0.0f;
+	#endif
+	
 }
 
 float joyStick::getY()
 {
+	#ifdef EDISON
 	return mraa_aio_read_float(yAIO);
+#else
+	return 0.0f;
+	#endif
 }
 
 
 robot::robot()
 {
+	#ifdef EDISON
 	
 	L1 = 7;
 	L2 = 5;
@@ -289,29 +323,39 @@ robot::robot()
 	
 	LeftMotor.initializeController(L1, L2, LE);
 	RightMotor.initializeController(R1, R2, RE);
+	#endif
 }
 
 void robot::demoForward(float factor) {
+	#ifdef EDISON
 	LeftMotor.setMotor(factor * 2);
 	RightMotor.setMotor(factor * 2);
+	#endif
 }
 
 void robot::demoBackward(float factor) {
+	#ifdef EDISON
 	LeftMotor.setMotor(factor * -2);
 	RightMotor.setMotor(factor * -2);
+	#endif
 }
 
 void robot::demoLeft(float factor) {
+	#ifdef EDISON
 	LeftMotor.setMotor(factor * -2);
 	RightMotor.setMotor(factor * 2);
+	#endif
 }
 
 void robot::demoRight(float factor) {
+	#ifdef EDISON
 	LeftMotor.setMotor(factor * 2);
 	RightMotor.setMotor(factor * -2);
+	#endif
 }
 
 void robot::demoDrive(float forwardFactor, float rightFactor) {
+	#ifdef EDISON
 	float functionalLeft = ((forwardFactor + rightFactor) - 1.0f) * 2;
 	float functionalRight = ((forwardFactor - rightFactor)) * 2;
 	
@@ -319,6 +363,7 @@ void robot::demoDrive(float forwardFactor, float rightFactor) {
 	
 	LeftMotor.setMotor(functionalLeft);
 	RightMotor.setMotor(functionalRight);
+	#endif
 }
 
 
