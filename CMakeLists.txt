@@ -37,10 +37,12 @@ ENDIF()
 
 SET( SRC_H ${SRC_H}
 	${CUR_SRC}/EdisonHal.h
+	${CUR_SRC}/motorController.h
 )
 
 SET( SRC_CPP
 	${CUR_SRC}/EdisonHalLogging.cpp
+	${CUR_SRC}/motorController.cpp
 )
 
 ADD_LIBRARY( EdisonHal STATIC

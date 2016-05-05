@@ -12,12 +12,10 @@ INCLUDE_DIRECTORIES(${CUR_SRC})
 
 SET(SRC_H
 	${CUR_SRC}/helloWorldMraa.h
-	${CUR_SRC}/motorController.h
 )
 SET(SRC_CPP
 	${CUR_SRC}/helloWorldMraa.cpp
 	${CUR_SRC}/hardwareEntry.cpp
-	${CUR_SRC}/motorController.cpp
 )
 
 ADD_EXECUTABLE( HardwareTest ${SRC_CPP} ${SRC_H})
