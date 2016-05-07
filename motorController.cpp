@@ -137,6 +137,7 @@ motorController::motorController()
 	pin2 = -1;
 	enable = -1;
 #endif
+	_power=0;
 }
 
 int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
@@ -202,6 +203,7 @@ int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
 
 int motorController::close()
 {
+	_power=0;
 	#ifdef EDISON
 	mraa_result_t r = MRAA_SUCCESS;
 	
@@ -223,6 +225,10 @@ int motorController::close()
 
 void motorController::setMotor(float powerLevel)
 {
+	if(powerLevel>1) powerLevel=1;
+	else if(powerLevel<-1) powerLevel=-1;
+
+	_power=powerLevel;
 	#ifdef EDISON
 	mraa_result_t r = MRAA_SUCCESS;
 	if(powerLevel > 0)
@@ -294,7 +300,7 @@ float joyStick::getX()
 	#ifdef EDISON
 	return mraa_aio_read_float(xAIO);
 #else
-	return 0.0f;
+	return 0.5f;
 	#endif
 	
 }
@@ -304,7 +310,7 @@ float joyStick::getY()
 	#ifdef EDISON
 	return mraa_aio_read_float(yAIO);
 #else
-	return 0.0f;
+	return 0.5f;
 	#endif
 }
 

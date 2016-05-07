@@ -42,12 +42,14 @@ namespace edison
  	mraa_gpio_context gpioPin1;
 		mraa_gpio_context gpioPin2;
 		mraa_pwm_context pwmEnable;
+		float _power;
 	public:
 		motorController();
 		int initializeController(int PIN1, int PIN2, int ENABLE);
 		int close();
 		void setMotor(float powerLevel);
 		void stopMotor();
+		float power() const {return _power;}
 	};
 	
 	class joyStick {
@@ -86,6 +88,9 @@ namespace edison
 		void demoRight(float factor);
 		
 		void demoDrive(float forwardFactor, float rightFactor);
+
+		motorController& rightWheel(){return RightMotor;}
+		motorController& leftWheel(){return LeftMotor;}
 	};
 }
 
