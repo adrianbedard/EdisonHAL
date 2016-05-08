@@ -43,8 +43,6 @@ int blink()
 		mraa_result_print(r);
 	}
 	
-	signal(SIGINT, sig_handler);
-	
 	while (running < 5) {
 		r = mraa_gpio_write(gpio, 0);
 		if (r != MRAA_SUCCESS) {
@@ -180,8 +178,6 @@ int motorController::initializeController(int PIN1, int PIN2, int ENABLE)
 	if (r != MRAA_SUCCESS) {
 		mraa_result_print(r);
 	}
-	
-	signal(SIGINT, sig_handler);
 	
 	
 	pwmEnable = mraa_pwm_init(enable);
