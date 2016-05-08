@@ -81,6 +81,8 @@ namespace edison
 		
 	public:
 		robot();
+
+		os::spinLock robotMutex;
 		
 		void demoForward(float factor);
 		void demoBackward(float factor);
