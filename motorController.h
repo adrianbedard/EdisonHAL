@@ -7,7 +7,7 @@
 #define MOTORCONTROLLER_H
 
 #include "hardwareHeader.h"
-
+#include "osMechanics.h"
 
 #include <stdio.h>
 #include <errno.h>
