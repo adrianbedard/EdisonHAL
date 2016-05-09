@@ -313,8 +313,6 @@ float joyStick::getY()
 
 robot::robot()
 {
-	#ifdef EDISON
-	
 	L1 = 7;
 	L2 = 5;
 	LE = 6;
@@ -325,39 +323,29 @@ robot::robot()
 	
 	LeftMotor.initializeController(L1, L2, LE);
 	RightMotor.initializeController(R1, R2, RE);
-	#endif
 }
 
 void robot::demoForward(float factor) {
-	#ifdef EDISON
 	LeftMotor.setMotor(factor * 2);
 	RightMotor.setMotor(factor * 2);
-	#endif
 }
 
 void robot::demoBackward(float factor) {
-	#ifdef EDISON
 	LeftMotor.setMotor(factor * -2);
 	RightMotor.setMotor(factor * -2);
-	#endif
 }
 
 void robot::demoLeft(float factor) {
-	#ifdef EDISON
 	LeftMotor.setMotor(factor * -2);
 	RightMotor.setMotor(factor * 2);
-	#endif
 }
 
 void robot::demoRight(float factor) {
-	#ifdef EDISON
 	LeftMotor.setMotor(factor * 2);
 	RightMotor.setMotor(factor * -2);
-	#endif
 }
 
 void robot::demoDrive(float forwardFactor, float rightFactor) {
-	#ifdef EDISON
 	float functionalLeft = ((forwardFactor + rightFactor) - 1.0f) * 2;
 	float functionalRight = ((forwardFactor - rightFactor)) * 2;
 	
@@ -365,7 +353,6 @@ void robot::demoDrive(float forwardFactor, float rightFactor) {
 	
 	LeftMotor.setMotor(functionalLeft);
 	RightMotor.setMotor(functionalRight);
-	#endif
 }
 
 
