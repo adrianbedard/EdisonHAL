@@ -1,4 +1,5 @@
-/**
+/** @brief Basic development program for testing mraa library
+ *
  */
 
 #ifndef HARDWARE_ENTRY_CPP

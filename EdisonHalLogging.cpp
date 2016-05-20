@@ -1,6 +1,6 @@
-/**
+/** @brief EdisonHal Logging objects
+ *
  */
-
 #ifndef EDISONHAL_CPP
 #define EDISONHAL_CPP
 

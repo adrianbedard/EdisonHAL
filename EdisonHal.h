@@ -1,4 +1,12 @@
 /**
+ * @file	EdisonHal.h
+ * @author	Jonathan Bedard
+ * @date 	5/2/2016
+ * @brief	This is a top level header that can be included into other libraries
+ * @bug	No known bugs.
+ *
+ * This header adds the streams for errors and includes the other necessary headers
+ * for the hardware header.
  */
 
 #ifndef EDISON_HAL_H

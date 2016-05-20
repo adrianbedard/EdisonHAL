@@ -1,6 +1,8 @@
 
 
-/**
+/** @brief	This is the motor controller header. This header holds several classes for generating 
+ * motor controllers, joysticks, and robot controllers. These objects are used elsewhere to allow for 
+ * the demonstration system to function. All three classes are built off the mraa library.
  */
 
 #ifndef MOTORCONTROLLER_H

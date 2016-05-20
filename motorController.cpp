@@ -4,6 +4,10 @@
 #include "motorController.h"
 #include "EdisonHal.h"
 
+/** @brief Implements various embedded commands for use on demonstration units
+ *
+ */
+
 using namespace edison;
 
 int running = 0;
