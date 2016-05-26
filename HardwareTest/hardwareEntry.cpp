@@ -80,10 +80,10 @@ int main(int argc,char** argv)
         fprintf(stdout, "%f   %f\n", demoStick.getX(), 1.0f - demoStick.getY());
 
         usleep(50000);
-        i++;
+        ++i;
         if (value >= 1.0f) {
             value = 0.0f;
-            //i++;
+            //++i;
         }
     demoLeft.stopMotor();
         //float output = mraa_pwm_read(pwm);
