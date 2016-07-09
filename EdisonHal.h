@@ -1,7 +1,7 @@
 /**
  * @file	EdisonHal.h
  * @author	Jonathan Bedard
- * @date 	5/2/2016
+ * @date 	7/9/2016
  * @brief	This is a top level header that can be included into other libraries
  * @bug	No known bugs.
  *
@@ -12,7 +12,7 @@
 #ifndef EDISON_HAL_H
 #define EDISON_HAL_H
 
-#include "Datastructures.h"
+#include "Datastructures/Datastructures.h"
 #include "osMechanics.h"
 #include "hardwareHeader.h"
 #include "motorController.h"
