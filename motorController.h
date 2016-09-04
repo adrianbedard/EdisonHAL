@@ -9,7 +9,7 @@
 #define MOTORCONTROLLER_H
 
 #include "hardwareHeader.h"
-#include "osMechanics.h"
+#include "osMechanics/osMechanics.h"
 
 #include <stdio.h>
 #include <errno.h>
