@@ -5,7 +5,7 @@
 #ifndef HARDWARE_ENTRY_CPP
 #define HARDWARE_ENTRY_CPP
 
-#include "EdisonHal/EdisonHal.h"
+#include "EdisonHAL/EdisonHal.h"
 
 using namespace edison;
 
