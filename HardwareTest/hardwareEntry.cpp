@@ -15,7 +15,7 @@ using namespace edison;
 int main(int argc,char** argv)
 {
     //Primary set up
-	srand(time(NULL));
+	srand(unsigned(time(NULL)));
     os::setLocalPath(argc,argv);
 	
 	//Log bind
